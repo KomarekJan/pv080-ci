@@ -32,7 +32,12 @@ class RunBinSh:
         return subprocess.Popen, (('/bin/sh',),)
 
 
-def import_urlib_version(version):
+def import_urlib_version(version: str):
+    try:
+        version = float(version)
+    except ValueError:
+        return
+
     exec("import urllib%s as urllib" % version)
 
 
